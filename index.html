@@ -9,7 +9,7 @@
 	<script
  	src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
  	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
- 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+ 	
 </head>
 
 <body>
@@ -53,22 +53,18 @@
 
 		<br>
 
-		<div class="panel panel-primary">
-			<div class="panel-heading"><strong><span id="nationalParkName"> Yosemite </span>is located:</strong>
-			</div>
-			<div class="panel-body">
-				<div id="mapHere">Map Goes Here
-				</div>
-			</div>	
+		<div id="mapHere" class="jumbotron" style="height: 400px; width: 100%;">
+			<div><strong><span id="nationalParkName"> </span>is located:</strong>
+			</div>		
 		</div>
-
 	</div>
-	<!-- link to js file -->
-	<div>
+	<!-- link to js file -->  
+    
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc&libraries=places"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-		<script type="text/javascript" src="assets/js/app.js"></script>
-	</div>
+	<script type="text/javascript" src="./javascript/app.js"></script>
 </body>
 </html>
