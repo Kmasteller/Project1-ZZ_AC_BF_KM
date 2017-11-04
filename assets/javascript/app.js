@@ -47,16 +47,10 @@ $("#submit").on("click", function (event) {
      // })
   })
   // body...
-})
-
-$("button").on("click", function() {
-    // Prevent form from submitting
-    event.preventDefault();
 
     //show weather
-    var latitude = lat;
-    var longitude = long;
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+latitude+"&lon="+longitude+"&APPID=8ba24065d724869e93ccd260b06096e5";
+
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+long+"&APPID=8ba24065d724869e93ccd260b06096e5";
     
     // Create an AJAX call to retrieve data Log the data in console
     $.ajax({url: queryURL, method: "GET"})
@@ -202,5 +196,4 @@ $("button").on("click", function() {
     reset();
       
     });
-
-
+    
