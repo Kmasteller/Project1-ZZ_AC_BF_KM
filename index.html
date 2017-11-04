@@ -33,21 +33,28 @@
 		<br>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading"><strong>The weather in <span id="nationalParkName"> Yosemite </span>is:</strong></div>
+			<div class="panel-heading"><strong>The weather in <span id="nationalParkName"> the national park </span></strong> is:</div>
 			<div class="panel-body">
-				<table class="table">
-					<thead>	
-						<tr>
-							<td>Park Name</td>
-							<td>Current Temperature</td>
-							<td>Wind Speed</td>
-							<td>Local Time</td>
-						</tr>
-					</thead>
-					<tbody id="results">
-						<!-- Make row <tr> and cells <td> from javascript -->			
-					</tbody>
-				</table>
+				<h3 id="currentTemp">Current Temperature: </h3>
+				<br>
+				<div>
+					<h4>Three Day Forecast: </h4>
+					<table class="table">
+							<thead class="thead-inverse">
+							  <tr>
+								<th></th>
+								<th>Lowest Temperature</th>
+								<th>Highest Temperature</th>
+								<th>Humidity</th>
+								<th>Weather</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  
+							</tbody>
+						  </table>
+
+				</div>
 			</div>
 		</div>
 
@@ -57,6 +64,17 @@
 			<div><strong><span id="nationalParkName"> </span>is located:</strong>
 			</div>		
 		</div>
+	</div>
+
+	<div class="panel panel-primary">
+				<div class="panel-heading"><strong><span id="info"> More information on the park </span></strong>
+				</div>
+				<div class="panel-body">
+					<div id="infoHere">
+					</div>
+				</div>	
+			</div>
+
 	</div>
 	<!-- link to js file -->  
     
