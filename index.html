@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>UT National Park Weather</title>
+	<title>US National Park Search</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script
  	src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
@@ -17,8 +17,10 @@
 	<div class="container">
 
 		<div class="jumbotron text-right" id="top-jumbo">
-			<h1><strong>Website Title</strong><h1>
-			<h3><strong>~Project 1 Subtitle~</strong></h3>
+			<h1><strong>National <br> Park Search</strong><h1>
+			<br>
+			<h3><strong>"The world is but a canvas <br> to our imagination."</strong></h3>
+			<h4><strong><i>~Henry David Thoreau    </i></strong></h4>
 		</div>
 		
 		<div class="panel panel-primary">
@@ -34,43 +36,43 @@
 		<br>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading"><strong>The weather in <span id="nationalParkName"> the national park </span></strong> is:</div>
+			<div class="panel-heading"><strong>The current weather in <span id="nationalParkName"> the national park </span> is:</strong></div>
 			<div class="panel-body">
-				<h3 id="currentTemp">Current Temperature: </h3>
+				<h3 id="currentTemp"><strong>Current Temperature: </strong></h3>
 				<br>
-				<div>
-					<h4>Three Day Forecast: </h4>
+					<h3><strong>Three Day Forecast: </strong></h3>
+				<br>
 					<table class="table">
-							<thead class="thead-inverse">
-							  <tr>
+						<thead class="thead-inverse">
+							<tr>
 								<th></th>
 								<th>Lowest Temperature</th>
 								<th>Highest Temperature</th>
 								<th>Humidity</th>
 								<th>Weather</th>
-							  </tr>
-							</thead>
-							<tbody>
+							</tr>
+						</thead>
+						<tbody>
 							  
-							</tbody>
-						  </table>
-
-				</div>
+						</tbody>
+					</table>
+				<br>
 			</div>
 		</div>
 
 		<br>
 
-		<div id="mapHere" class="jumbotron" style="height: 400px; width: 100%;">
+		<div id="mapHere" class="jumbotron" style="height: 400px; width: 100%; font-size: 36px">
 			<div><strong><span id="nationalParkName"> </span>is located:</strong>
 			</div>		
 		</div>
 
 	<div class="panel panel-primary">
-				<div class="panel-heading"><strong><span id="info"> More information on the park </span></strong>
+				<div class="panel-heading"><strong>Want more information about <span id="parkInfo">NP HERE</span>? Click on the link below:</strong>
 				</div>
 				<div class="panel-body">
 					<div id="infoHere">
+						<br>
 					</div>
 				</div>	
 			</div>

@@ -1,8 +1,18 @@
+body {
+	background-color: #A0A0A0;
+}
+
 #top-jumbo {
+	font-family: "Arial Black", Gadget, sans-serif;
 	background-image: url(../../assets/images/header-image.jpg);
 	color: white;
 	background-position: 0% 25%;
   	background-size: cover;
   	background-repeat: no-repeat;
-  	text-shadow: 2px 2px black;
+  	text-shadow: 2px 2px black, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#submit {
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px grey;
 }
