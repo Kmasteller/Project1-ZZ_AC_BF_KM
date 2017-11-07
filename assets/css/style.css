@@ -16,3 +16,16 @@ body {
 	border-radius: 5px;
 	box-shadow: 1px 1px 1px grey;
 }
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #24478f;
+    color: white;
+}
+
+.btn-primary {
+    background-image: none;
+    background-color: #24478f;
+    color: white;
+
+}
