@@ -1,15 +1,33 @@
-body {
-	background-color: #A0A0A0;
+
+#login, #signup {
+	float: right;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 #top-jumbo {
+	margin-top: 10px;
 	font-family: "Arial Black", Gadget, sans-serif;
 	background-image: url(../../assets/images/header-image.jpg);
 	color: white;
 	background-position: 0% 25%;
-  	background-size: cover;
-  	background-repeat: no-repeat;
-  	text-shadow: 2px 2px black, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  clear: both;
+  text-shadow: 2px 2px black, -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.container{
+	opacity: 0.9;
+}
+
+.weather {
+	margin-bottom: 30px;
+}
+
+#choose{
+	margin-bottom: 10px;
 }
 
 #submit {

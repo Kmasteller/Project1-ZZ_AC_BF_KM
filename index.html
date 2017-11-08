@@ -14,13 +14,25 @@
 </head>
 
 <body>
+	
 	<div class="container">
+		<nav class="form-inline my-2 my-lg-0">
+			<!-- Navbar content -->
+			<form class="form-inline">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="signup">Sign up</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="login">Log in</button>		
+			</form>					
+		</nav>
 
 		<div class="jumbotron text-right" id="top-jumbo">
+
+<!-- 			<h1><strong>Better National Park Service</strong><h1> -->
+<!-- 			<h3><strong>Top 10 National Parks Info</strong></h3> -->
 			<h1><strong>National <br> Park Search</strong><h1>
 			<br>
 			<h3><strong>"The world is but a canvas <br> to our imagination."</strong></h3>
 			<h4><strong><i>~Henry David Thoreau</i></strong></h4>
+
 		</div>
 		
 		<div class="panel panel-primary">
@@ -35,8 +47,10 @@
 
 		<br>
 
-		<div class="panel panel-primary">
-			<div class="panel-heading"><strong>The current weather in <span id="nationalParkName"> the national park </span> is:</strong></div>
+
+		<div id="weather" class="panel panel-primary">
+			<div class="panel-heading">The weather in <strong><span id="nationalParkName"> the national park </span></strong> is:</div>
+		
 			<div class="panel-body">
 				<h3 id="currentTemp"><strong>Current Temperature: </strong></h3>
 				<br>
@@ -75,9 +89,10 @@
 						<br>
 					</div>
 				</div>	
-			</div>
+		</div>
 
 	</div>
+
 	<!-- link to js file -->  
     
 
