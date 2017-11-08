@@ -16,18 +16,52 @@
 <body>
 	
 	<div class="container">
-		<nav class="form-inline my-2 my-lg-0">
-			<!-- Navbar content -->
-			<form class="form-inline">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="signup">Sign up</button>
-				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="login">Log in</button>		
-			</form>					
-		</nav>
+
+		<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	     <div class="row">
+			<div class="Absolute-Center is-Responsive">
+			  <div class="col-sm-12 col-md-10 col-md-offset-1">
+			    <form action="" id="loginForm">
+			      <div class="form-group input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			        <input class="form-control" id="txtEmail" type="text" placeholder="email"/>          
+			      </div>
+			      <div class="form-group input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			        <input class="form-control" type="password" id="txtPassword" placeholder="password"/>     
+			      </div>
+			      <div class="form-group">
+			        <button type="button" id="btnLogin" class="btn btn-def btn-block">Login</button>
+			      </div>
+			      <div class="form-group">
+			        <button type="button" id="btnSignUp" class="btn btn-def btn-block">Sign Up</button>
+			      </div>
+			    </form>        
+			  </div>  
+			</div>    
+		</div>
+	  </div>
+
+	</div>
 
 		<div class="jumbotron text-right" id="top-jumbo">
+			<button class="btn btn-primary" id="myBtn">Login</button>
+<!-- 		<nav class="form-inline my-2 my-lg-0">
+			<!-- Navbar content -->
+<!-- 			<form class="form-inline">
+<!-- 				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="signup">Sign up</button> -->
+<!-- 				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="login">Log in</button>		
+			</form>					 -->
+<!-- 		</nav>
+		<div class="jumbotron text-right" id="top-jumbo"> --> -->
 
 <!-- 			<h1><strong>Better National Park Service</strong><h1> -->
 <!-- 			<h3><strong>Top 10 National Parks Info</strong></h3> -->
+
 			<h1><strong>National <br> Park Search</strong><h1>
 			<br>
 			<h3><strong>"The world is but a canvas <br> to our imagination."</strong></h3>

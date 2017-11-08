@@ -1,3 +1,6 @@
+
+console.log("yo ho ho");
+var lat, long, map, userRef, userId;
 $(document).ready(function(){
   var background = $("body");
   //need to set image full screen size
@@ -440,5 +443,109 @@ $("#submit").on("click", function (event) {
 
   reset();
       
+
+    });
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const config = {
+    apiKey: "AIzaSyCnIalpFtrV0ca3m1UmTL5mo3MB3SK1F4k",
+    authDomain: "nps-website.firebaseapp.com",
+    databaseURL: "https://nps-website.firebaseio.com",
+    projectId: "nps-website",
+    storageBucket: "nps-website.appspot.com",
+    messagingSenderId: "950698846561"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  // get elements
+  const txtEmail = document.getElementById('txtEmail');
+  const txtPassword = document.getElementById('txtPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignUp = document.getElementById('btnSignUp');
+
+  // add login event
+  btnLogin.addEventListener('click', function(e) {
+    // get email and pass
+    const email = txtEmail.value;
+    const pass = txtPassword.value;
+    const auth = firebase.auth();
+    // sign in
+    const promise = auth.signInWithEmailAndPassword(email,pass);
+    promise.catch(function(e){ 
+      console.log(e.message)
+    });
   });
+
+  // add signup event
+  btnSignUp.addEventListener('click', function(e) {
+    // get email and pass
+    const email = txtEmail.value;
+    const pass = txtPassword.value;
+    const auth = firebase.auth();
+    // sign in
+    const promise = auth.createUserWithEmailAndPassword(email,pass);
+    promise.catch(function (e) {
+      console.log(e.message); 
+      alert("password needs to be 6 characters long and email with domain needs to be used")
+    });
+  });
+
+  // add a realtime listener
+  firebase.auth().onAuthStateChanged(function(firebaseUser) {
+    if(firebaseUser) {
+      userId = firebaseUser.uid
+      console.log(userId)
+      userRef = database.ref("/users/" + userId);
+      console.log(userRef)
+      waiter()
+      console.log(firebaseUser);
+    }
+    else {
+      console.log('not logged in');
+    }
+  });
+
+
+//this will be the command that we will use to create favorite park subObj push our favorite parks on button click
+//userRef.child("favParks").push("please")
+
+
+//we were having control flow issues with the user ref being undefined thats why we made this function
+
+function waiter () {
+  userRef.child("favParks").on("value", function(snap){
+    console.log("chiilde was added")
+    //this is looping over all our favParks and we do stuff yet to be decided
+      snap.forEach(function(childSnapshot) {
+          console.log(childSnapshot.val())
+    })
+  })
+}
+
+});
     
