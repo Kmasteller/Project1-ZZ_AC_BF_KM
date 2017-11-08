@@ -53,7 +53,6 @@ $("#signup").on("click", function(){
 });
 
 
-
 // console.log("yo ho ho");
 var lat, long, map;
 
@@ -94,8 +93,6 @@ $("#submit").on("click", function (event) {
             infowindow.open(map, marker);
           
         });
-
-
 
      // var marker = new google.maps.Marker({
      //   position: coordinates,
@@ -173,9 +170,9 @@ $("#submit").on("click", function (event) {
         highTemp3 +"℉"+ "</td><td id='humidity3'>" + humidity3 + "</td><td id='weather3'>" + weather3 + "</td></tr>");
         });
   });    
-  
-    //show park info
+    // console.log(park);
     var park = $("#nationalPark").val().toLowerCase();
+    
     if(park == "yellowstone"){
       $("#nationalParkName").text("Yellowstone");
       parkCode = "yell";
@@ -421,8 +418,6 @@ $("#submit").on("click", function (event) {
       alert("That park was not found. Please ensure your spelling is correct.");
     }
 
-    // console.log(park);
-
     var queryURL = "https://developer.nps.gov/api/v1/parks?parkCode=" +
       parkCode + "&api_key=UWw1lG6XxvjBIgZpCUchXWJTbKHTFkWzqYEFJ5xE";
     $.ajax({
@@ -430,7 +425,7 @@ $("#submit").on("click", function (event) {
         method: "GET"
       })
       .done(function(response) {
-        // $("a").attr("href","'"+response.data[0].directionsUrl+"'");
+        $("#infoHere").attr("href", response.data[0].directionsUrl);
         $("#infoHere").html(response.data[0].directionsUrl);
         console.log(response.data[0].directionsUrl);
         console.log(response.data[0].name);
@@ -443,7 +438,7 @@ $("#submit").on("click", function (event) {
       $("#infoHere").empty();
     }
 
-    reset();
+  reset();
       
-    });
+  });
     
