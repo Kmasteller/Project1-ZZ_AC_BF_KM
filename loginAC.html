@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN PAGE NPS</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css.css">
+
+</head>
+
+<body>
+
+<!-- <div class="container">
+	   <div class="jumbotron" id="logo-container"></div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+
+    <div class="Absolute-Center is-Responsive">
+    	   <div class="jumbotron"></div>
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <form action="" id="loginForm">
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" id="txtEmail" type="text" placeholder="email"/>          
+          </div>
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" type="password" id="txtPassword" placeholder="password"/>     
+          </div>
+          <div class="form-group">
+            <button type="button" id="btnLogin" class="btn btn-def btn-block">Login</button>
+          </div>
+          <div class="form-group">
+            <button type="button" id="btnSignUp" class="btn btn-def btn-block">Sign Up</button>
+          </div>
+        </form>        
+      </div>  
+    </div>    
+  </div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+<script type="text/javascript">
+  // Initialize Firebase
+  const config = {
+    apiKey: "AIzaSyCnIalpFtrV0ca3m1UmTL5mo3MB3SK1F4k",
+    authDomain: "nps-website.firebaseapp.com",
+    databaseURL: "https://nps-website.firebaseio.com",
+    projectId: "nps-website",
+    storageBucket: "nps-website.appspot.com",
+    messagingSenderId: "950698846561"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  // get elements
+  const txtEmail = document.getElementById('txtEmail');
+  const txtPassword = document.getElementById('txtPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignUp = document.getElementById('btnSignUp');
+
+  // add login event
+  btnLogin.addEventListener('click', e=> {
+  	// get email and pass
+  	const email = txtEmail.value;
+  	const pass = txtPassword.value;
+  	const auth = firebase.auth();
+  	// sign in
+  	const promise = auth.signInWithEmailAndPassword(email,pass);
+  	promise.catch(e => console.log(e.message));
+  });
+
+  // add signup event
+  btnSignUp.addEventListener('click', e => {
+  	// get email and pass
+  	const email = txtEmail.value;
+  	const pass = txtPassword.value;
+  	const auth = firebase.auth();
+  	// sign in
+  	const promise = auth.createUserWithEmailAndPassword(email,pass);
+  	promise.catch(e => {console.log(e.message); alert("password needs to be 6 characters long and email with domain needs to be used")});
+  });
+
+  // add a realtime listener
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if(firebaseUser) {
+  		console.log(firebaseUser);
+  	}
+  	else {
+  		console.log('not logged in');
+  	}
+  });
+
+</script>
+</body>
+</html>

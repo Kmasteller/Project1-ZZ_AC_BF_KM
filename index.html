@@ -9,15 +9,24 @@
 	<script
  	src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
  	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
  	
 </head>
 
 <body>
+	
 	<div class="container">
+		<nav class="form-inline my-2 my-lg-0">
+			<!-- Navbar content -->
+			<form class="form-inline">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="signup">Sign up</button>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="button" id="login">Log in</button>		
+			</form>					
+		</nav>
 
-		<div class="jumbotron text-center">
-			<h1><strong>Website Title</strong><h1>
-			<h3><strong>~Project 1 Subtitle~</strong></h3>
+		<div class="jumbotron text-right" id="top-jumbo">
+			<h1><strong>Better National Park Service</strong><h1>
+			<h3><strong>Top 10 National Parks Info</strong></h3>
 		</div>
 		
 		<div class="panel panel-primary">
@@ -32,8 +41,8 @@
 
 		<br>
 
-		<div class="panel panel-primary">
-			<div class="panel-heading"><strong>The weather in <span id="nationalParkName"> the national park </span></strong> is:</div>
+		<div id="weather" class="panel panel-primary">
+			<div class="panel-heading">The weather in <strong><span id="nationalParkName"> the national park </span></strong> is:</div>
 			<div class="panel-body">
 				<h3 id="currentTemp">Current Temperature: </h3>
 				<br>
@@ -64,18 +73,18 @@
 			<div><strong><span id="nationalParkName"> </span>is located:</strong>
 			</div>		
 		</div>
-	</div>
 
-	<div class="panel panel-primary">
+		<div class="panel panel-primary">
 				<div class="panel-heading"><strong><span id="info"> More information on the park </span></strong>
 				</div>
 				<div class="panel-body">
 					<div id="infoHere">
 					</div>
 				</div>	
-			</div>
+		</div>
 
 	</div>
+
 	<!-- link to js file -->  
     
 
@@ -83,6 +92,6 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-	<script type="text/javascript" src="./assets/javascript/app.js"></script>
+		<script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
 </html>

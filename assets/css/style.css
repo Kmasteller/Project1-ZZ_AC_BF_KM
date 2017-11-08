@@ -1,0 +1,30 @@
+#login, #signup {
+	float: right;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+#top-jumbo {
+	margin-top: 10px;
+	background-image: url(../../assets/images/header-image.jpg);
+	color: white;
+	background-position: 0% 25%;
+  	background-size: cover;
+  	background-repeat: no-repeat;
+	text-shadow: 2px 2px black;
+	clear: both;
+}
+
+.container{
+	opacity: 0.8;
+}
+
+.weather {
+	margin-bottom: 30px;
+}
+
+#choose{
+	margin-bottom: 10px;
+}
+
