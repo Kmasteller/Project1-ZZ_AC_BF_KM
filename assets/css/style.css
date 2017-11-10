@@ -93,4 +93,13 @@ body {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+
 }
+
+
+.imageStyle {
+    width: 400px;
+    height: 200px;
+}
+
+
