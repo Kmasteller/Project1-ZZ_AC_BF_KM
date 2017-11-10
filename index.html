@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>US National Park Search</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script
  	src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+ 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
  	
@@ -41,6 +41,24 @@
 				        	<button type="button" id="btnSignUp" class="btn btn-def btn-block">Sign Up</button>
 				      	</div>
 			    		</form>        
+			  		</div>  
+				</div>    
+			</div>
+	  	</div>
+	</div>
+
+	<div id="notFoundModal" class="modal">
+  <!-- Modal content -->
+		<div class="modal-content">
+	       	<div class="row">
+				<div class="Absolute-Center is-Responsive">
+			  		<div class="col-sm-12 col-md-10 col-md-offset-1">
+			    		<div id="notFoundModalMessage" class="text-center">That park was not found. Please ensure your spelling is correct.        
+			      		</div>
+			      		<br>
+				      	<div class="form-group">
+				        	<button type="button" id="btnOkay" class="btn btn-def btn-block">Okay</button>
+				      	</div>      
 			  		</div>  
 				</div>    
 			</div>

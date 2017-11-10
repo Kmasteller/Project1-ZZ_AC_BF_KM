@@ -420,8 +420,25 @@ $("#submit").on("click", function (event) {
     parkCode = "hava";
   }
   else{
-    alert("That park was not found. Please ensure your spelling is correct.");
+    // Get the modal
+    var notFoundModal = document.getElementById('notFoundModal');
+    notFoundModal.style.display = "block";
+
+    var button = document.getElementById("btnOkay");
+
+    button.onclick = function() {
+        notFoundModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == notFoundModal) {
+          notFoundModal.style.display = "none";
+      }
+    }
   }
+    // alert("That park was not found. Please ensure your spelling is correct.");
+  
 
   var queryURL = "https://developer.nps.gov/api/v1/parks?parkCode=" + parkCode + "&api_key=UWw1lG6XxvjBIgZpCUchXWJTbKHTFkWzqYEFJ5xE";
 
@@ -474,6 +491,16 @@ window.onclick = function(event) {
       modal.style.display = "none";
   }
 }
+
+$("#btnLogin").on('click', function() {
+  modal.style.display = "none";
+})
+
+$("#btnSignUp").on('click', function() {
+  modal.style.display = "none";
+})
+
+
 const config = {
     apiKey: "AIzaSyCnIalpFtrV0ca3m1UmTL5mo3MB3SK1F4k",
     authDomain: "nps-website.firebaseapp.com",
@@ -549,3 +576,4 @@ function waiter () {
 }
 
     
+
