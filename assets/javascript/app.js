@@ -57,56 +57,61 @@ $("#signup").on("click", function(){
   window.open("loginAC.html","_blank");
 });
 
-//when user clicked on submit button
+// MAPS start here
 $("#submit").on("click", function (event) {
-  //prevent button default
-  event.preventDefault();
-  // console.log("hey you clicked me")
+  event.preventDefault();  
   var parkEntered = $("#nationalPark").val().trim();
-  
   console.log(parkEntered);
+  var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + parkEntered + "&key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc"
+ 
+  $.ajax({
+    url: queryUrl,
+    method: "GET"
+  }).done(function(response){
+    console.log(response)
+    lat = response.results[0].geometry.location.lat;
+    long = response.results[0].geometry.location.lng;  
+    var coordinates = {lat: lat, lng: long}
+    console.log(lat, long)
+     map = new google.maps.Map(document.getElementById('mapHere'), {
+          center: coordinates,
+          mapTypeId: 'hybrid',
+          zoom: 10
+      });
   
-  var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + parkEntered + "&key=AIzaSyDygNCUy0c-ktsxgQh54x83Rdza88YjOYg"
-  
-  $.ajax({url: queryUrl, method: "GET"})
-    .done(function(response){
-      console.log(response)
-      lat = response.results[0].geometry.location.lat;
-      long = response.results[0].geometry.location.lng;
-      var coordinates = {lat: lat, lng: long}
-      console.log(lat, long)
 
-    map = new google.maps.Map(document.getElementById('mapHere'), {
-      center: coordinates,
-      mapTypeId: 'satellite',
-      zoom: 10
-    });
+    // Create Infowindow
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    service.getDetails({
+        placeId: response.results[0].place_id
+        }, callback);
 
-    var infowindow = new google.maps.InfoWindow({});
 
-    var marker, i;
-
-    marker = new google.maps.Marker({
-      position: coordinates,
-      map: map
-    });
-
-    google.maps.event.addListener(marker, 'click', function () {
-      
-        infowindow.setContent(response.results[0].address_components[0].short_name);
-        infowindow.open(map, marker);
-          
-    });
-
-     // var marker = new google.maps.Marker({
-     //   position: coordinates,
-     //   map: map,
-     //   title: "heelow"
-     // })
-
-     //show weather
-
-    // console.log(lat, long);
+    function callback(results, status) {
+       if (status === google.maps.places.PlacesServiceStatus.OK) {         
+           createMarker(results);
+       }    
+    }
+    // Create Marker (and make it bounce)
+    function createMarker(place) {
+      console.log(place); 
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        animation: google.maps.Animation.BOUNCE
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent('<div id="imgContainer"><strong>' + place.name + '</strong><br>' +
+          place.formatted_address + '<br>' + '</div>');
+        infowindow.open(map, this);
+        var randomNum = Math.floor(Math.random() * place.photos.length - 1) + 1;              
+        var img = $("<img class='col-sm-2 imageStyle'>")
+        img.attr("src", place.photos[randomNum].getUrl({'maxWidth': 400, 'maxHeight': 300}))
+        $("#imgContainer").append(img)    
+      });
+    }
+ 
     
     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+long+"&APPID=8ba24065d724869e93ccd260b06096e5";
         
@@ -169,8 +174,7 @@ $("#submit").on("click", function (event) {
       highTemp +"℉"+ "</td><td id='humidity'>" + humidity + "</td><td id='weather'>" + weather + "</td></tr>" + "<tr><td id='dayCount2'>" + date2 + "</td><td id='lowTemp2'>" + lowTemp2 +"℉"+ "</td><td id='highTemp2'>" +
       highTemp2 +"℉"+ "</td><td id='humidity2'>" + humidity2 + "</td><td id='weather2'>" + weather2 + "</td></tr>"+"<tr><td id='dayCount3'>" + date3 + "</td><td id='lowTemp3'>" + lowTemp3 +"℉"+ "</td><td id='highTemp3'>" +
       highTemp3 +"℉"+ "</td><td id='humidity3'>" + humidity3 + "</td><td id='weather3'>" + weather3 + "</td></tr>");
-    });
-  });    
+    });    
     // console.log(park);
   var park = $("#nationalPark").val().toLowerCase();
   
@@ -432,6 +436,12 @@ $("#submit").on("click", function (event) {
     console.log(response.data[0].name);
   });
 
+
+
+  reset();
+});
+});
+  
   function reset(){
     $("#nationalPark").val("");
     $("#currentTemp").empty();
@@ -439,9 +449,6 @@ $("#submit").on("click", function (event) {
     $("#infoHere").empty();
   }
 
-  reset();
-
-});
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -537,8 +544,8 @@ function waiter () {
     //this is looping over all our favParks and we do stuff yet to be decided
     snap.forEach(function(childSnapshot) {
         console.log(childSnapshot.val());
-    })
-  })
+    });
+});
 }
 
     
