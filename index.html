@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>US National Park Search</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script
  	src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
- 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
  	
@@ -15,125 +15,122 @@
 
 <body>
 	
-<div class="container">
+	<div class="container">
 
-	<div id="myModal" class="modal">
+		<div id="myModal" class="modal">
 
   <!-- Modal content -->
-		<div class="modal-content">
+	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    	<div class="row">
-				<div class="Absolute-Center is-Responsive">
-			  		<div class="col-sm-12 col-md-10 col-md-offset-1">
-			    		<form action="" id="loginForm">
-			      		<div class="form-group input-group">
-			        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-			        		<input class="form-control" id="txtEmail" type="text" placeholder="email"/>          
-			      		</div>
-				      	<div class="form-group input-group">
-				        	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				        	<input class="form-control" type="password" id="txtPassword" placeholder="password"/>     
-				      	</div>
-				      	<div class="form-group">
-				        	<button type="button" id="btnLogin" class="btn btn-def btn-block">Login</button>
-				      	</div>
-				      	<div class="form-group">
-				        	<button type="button" id="btnSignUp" class="btn btn-def btn-block">Sign Up</button>
-				      	</div>
-			    		</form>        
-			  		</div>  
-				</div>    
-			</div>
-	  	</div>
+	     <div class="row">
+			<div class="Absolute-Center is-Responsive">
+			  <div class="col-sm-12 col-md-10 col-md-offset-1">
+			    <form action="" id="loginForm">
+			      <div class="form-group input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			        <input class="form-control" id="txtEmail" type="text" placeholder="email"/>          
+			      </div>
+			      <div class="form-group input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			        <input class="form-control" type="password" id="txtPassword" placeholder="password"/>     
+			      </div>
+			      <div class="form-group">
+			        <button type="button" id="btnLogin" class="btn btn-def btn-block">Login</button>
+			      </div>
+			      <div class="form-group">
+			        <button type="button" id="btnSignUp" class="btn btn-def btn-block">Sign Up</button>
+			      </div>
+			    </form>        
+			  </div>  
+			</div>    
+		</div>
+	  </div>
+
 	</div>
 
-	<div id="notFoundModal" class="modal">
-  <!-- Modal content -->
-		<div class="modal-content">
-	       	<div class="row">
-				<div class="Absolute-Center is-Responsive">
-			  		<div class="col-sm-12 col-md-10 col-md-offset-1">
-			    		<div id="notFoundModalMessage" class="text-center">That park was not found. Please ensure your spelling is correct.        
-			      		</div>
-			      		<br>
-				      	<div class="form-group">
-				        	<button type="button" id="btnOkay" class="btn btn-def btn-block">Okay</button>
-				      	</div>      
-			  		</div>  
-				</div>    
-			</div>
-	  	</div>
-	</div>
+		<div class="jumbotron text-right" id="top-jumbo">
+			<button class="btn btn-primary" id="myBtn">Login</button>
 
-	<div class="jumbotron text-right" id="top-jumbo">
-		<button class="btn btn-primary" id="myBtn">Login</button>
-		<h1><strong>National <br> Park Search</strong><h1>
-		<br>
-		<h3><strong>"The world is but a canvas <br> to our imagination."</strong></h3>
-		<h4><strong><i>~Henry David Thoreau</i></strong></h4>
-	</div>
+			<h1><strong>Better National Park Service</strong><h1>
+			<br>
+			<h3><strong>"The world is but a canvas <br> to our imagination."</strong></h3>
+			<h4><strong><i>~Henry David Thoreau</i></strong></h4>
+
+		</div>
+
+		<div class="panel panel-primary">
+				<div class="panel-heading"><strong>Those are your saved favorite parks:</strong></div>				
+				<div id="showFav"></div>
+		</div>
+			
 		
-	<div class="panel panel-primary">
-		<div class="panel-heading"><strong>What is your favorite park?</strong></div>
-		<div class="panel-body">
-			<div><strong>Enter National Park Here:</strong></div>
-  			<input type="text" class="form-control" id="nationalPark">
-			<br>
-			<button class="btn-primary btn-md" id="submit" value="Submit"><span class="glyphicon glyphicon-ok"></span><strong> Submit</strong></button>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><strong>What is your favorite park?</strong></div>
+			<div class="panel-body">
+				<div><strong>Enter National Park Here:</strong></div>
+	  			<input type="text" class="form-control" id="nationalPark">
+				<br>
+				<button class="btn-primary btn-md" id="submit" value="Submit"><span class="glyphicon glyphicon-ok"></span><strong> Submit</strong></button>
+				<button class="btn-primary btn-md" id="addFav"><span class="glyphicon glyphicon-ok"></span><strong> Add to Favorite</strong></button>
+				<!-- <div id="popup" style="display: none">Like it?</div> -->
+			</div>
 		</div>
-	</div>
 
-	<br>
+		<br>
 
-	<div id="weather" class="panel panel-primary">
-		<div class="panel-heading">The weather in <strong><span id="nationalParkName"> the national park </span></strong> is:</div>
-	
-		<div class="panel-body">
-			<h3 id="currentTemp"><strong>Current Temperature: </strong></h3>
-			<br>
-			<h3><strong>Three Day Forecast: </strong></h3>
-			<br>
-			<table class="table">
-				<thead class="thead-inverse">
-					<tr>
-						<th></th>
-						<th>Lowest Temperature</th>
-						<th>Highest Temperature</th>
-						<th>Humidity</th>
-						<th>Weather</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-			<br>
-		</div>
-	</div>
 
-	<br>
-
-	<div id="mapHere" class="jumbotron" style="height: 400px; width: 100%; font-size: 36px">
-		<div><strong><span id="nationalParkName"> </span>is located:</strong></div>		
-	</div>
-
-	<br>
-
-	<div class="panel panel-primary">
-		<div class="panel-heading">For more information about the National Park you selected, click on the link below:
-		</div>
-		<div class="panel-body">
-			<div> <a id="infoHere" target="_blank"></a>
+		<div id="weather" class="panel panel-primary">
+			<div class="panel-heading">The weather in <strong><span id="nationalParkName"> the national park </span></strong> is:</div>
+		
+			<div class="panel-body">
+				<h3 id="currentTemp"><strong>Current Weather: </strong></h3>
+				<br>
+					<h3><strong>Three Day Forecast: </strong></h3>
+				<br>
+					<table class="table">
+						<thead class="thead-inverse">
+							<tr>
+								<th></th>
+								<th>Lowest Temperature</th>
+								<th>Highest Temperature</th>
+								<th>Humidity</th>
+								<th>Weather</th>
+							</tr>
+						</thead>
+						<tbody>
+							  
+						</tbody>
+					</table>
 				<br>
 			</div>
-		</div>	
+		</div>
+
+		<br>
+
+		<div id="mapHere" class="jumbotron" style="height: 400px; width: 100%; font-size: 36px">
+			<div><strong><span id="nationalParkName"> </span>is located:</strong>
+			</div>		
+		</div>
+
+	<div class="panel panel-primary">
+				<div class="panel-heading">For more information about the National Park you selected, click on the link below:
+				</div>
+				<div class="panel-body">
+					<div> <a id="infoHere" target="_blank"></a>
+						<br>
+					</div>
+				</div>	
+		</div>
+
 	</div>
 
-</div>
-<!-- link to js file -->  
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc&libraries=places"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-	<script type="text/javascript" src="./assets/javascript/app.js"></script>
+	<!-- link to js file -->  
+    
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc&libraries=places"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+		<script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
 </html>
