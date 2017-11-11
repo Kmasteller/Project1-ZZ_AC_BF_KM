@@ -25,7 +25,7 @@ $(document).ready(function(){
   function nextBackground(){
     current++;
     current = current % backgrounds.length;
-    console.log(current);
+    // console.log(current);
     background.css("background-image", backgrounds[current]);
     // background.css("background-repeat",no-repeat);
     // background.css("background-position",center);
@@ -485,6 +485,46 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
+
+
+
+//I ADDED THIS FOR FAILING SIGNING iN ALERT (MODAL)***
+var logIn = document.getElementById('failedLogInModal');
+var btnLogIn = document.getElementById('btnLogin');
+var btnLogOkay = document.getElementById("btnLogOkay");
+
+
+btnLogOkay.onclick = function() {
+  logIn.style.display = "none";
+  // console.log("is this working")
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+      logIn.style.display = "none";
+  }
+}
+
+//I ADDED THIS FOR SIGNING OUT ALERT (MODAL)
+var signOut = document.getElementById('signedOutModal');
+var btnSignOut = document.getElementById('btnSignOut');
+var btnOkay = document.getElementById("btnSignOkay");
+
+btnSignOut.onclick = function() {
+  signOut.style.display = "block";
+}
+
+btnOkay.onclick = function() {
+  signOut.style.display = "none";
+  console.log("is this working")
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+      signOut.style.display = "none";
+  }
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -530,6 +570,7 @@ btnLogin.addEventListener('click', function(e) {
   const promise = auth.signInWithEmailAndPassword(email,pass);
   promise.catch(function(e){ 
     console.log(e.message);
+    logIn.style.display = "block"; //did log in fail?
   });
 });
 
@@ -547,6 +588,16 @@ btnSignUp.addEventListener('click', function(e) {
   });
 });
 
+btnSignOut.addEventListener('click', function(e) {
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+    console.log("user signed out");
+  }).catch(function(error) {
+    // An error happened.
+  });
+  $("#welcome").html("Not logged in"); //empty welcome span when sign out***
+});//btnsignout
+
   // add a realtime listener
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
   if(firebaseUser) {
@@ -556,7 +607,9 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     console.log(userRef);
     waiter();
     console.log(firebaseUser);
-  } else {
+    $("#welcome").html("Hello, " + firebaseUser.email + "!"); //let user know they are signed in***
+  }
+   else {
       console.log('not logged in');
   }
 });
