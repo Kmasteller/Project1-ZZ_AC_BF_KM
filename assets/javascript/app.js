@@ -36,7 +36,7 @@ $(document).ready(function(){
   // function changeBackgroundSmoothly(){
   //   background.fadeOut(5000, nextBackground);
   // }
-  setInterval(nextBackground,5000);
+  setInterval(nextBackground,10000);
   
   // setInterval(changeBackgroundSmoothly,10000);
   
