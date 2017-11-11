@@ -53,7 +53,7 @@ $("#submit").on("click", function(){
 function getParkData(clickedPark){
   event.preventDefault();  
   if(clickedPark == undefined){
-      var park = $("#nationalPark").val().trim();
+      var park = $("#nationalPark").val().trim().toLowerCase();
     }else{
       var park = clickedPark;
     }
