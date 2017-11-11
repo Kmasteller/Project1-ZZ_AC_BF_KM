@@ -106,3 +106,8 @@ body {
 #newButton {
     margin: 5px;
 }
+
+#addFav {
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px grey;
+}
