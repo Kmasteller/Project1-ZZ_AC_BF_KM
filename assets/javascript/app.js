@@ -456,12 +456,12 @@ function getParkData(clickedPark){
 });
 };
   
-  function reset(){
-    $("#nationalPark").val("");
-    $("#currentTemp").empty();
-    $(".table > tbody").empty();
-    $("#infoHere").empty();
-  }
+function reset(){
+  $("#nationalPark").val("");
+  $("#currentTemp").empty();
+  $(".table > tbody").empty();
+  $("#infoHere").empty();
+}
 
 //***********************************************************************************************************************************************
 // Get the modal
