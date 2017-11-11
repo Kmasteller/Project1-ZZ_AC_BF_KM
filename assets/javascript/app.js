@@ -42,7 +42,7 @@ $(document).ready(function(){
   
 });
 
-//when user clicked on submit button
+//when user clicked on submit button, search for park
 $("#submit").on("click", function(){
   getParkData()
 });
@@ -59,6 +59,8 @@ function getParkData(clickedPark){
       var park = clickedPark.toLowerCase();
     }
   console.log("this is :" + park);
+
+  // MAP API
   var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + park + "&key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc"
  
   $.ajax({
@@ -110,7 +112,7 @@ function getParkData(clickedPark){
     }
  
     
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+long+"&APPID=8ba24065d724869e93ccd260b06096e5";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+long+"&APPID=8ba24065d724869e93ccd260b06096e5";
         
         // Create an AJAX call to retrieve data Log the data in console
     $.ajax({url: queryURL, method: "GET"})
@@ -149,9 +151,9 @@ function getParkData(clickedPark){
        //weather
       var weather2 = response.list[11].weather[0].main;
       console.log(weather2);
-      var lowTemp3 = ((response.list[20].main.temp_min - 273.15) * 1.8 + 32).toFixed(2);
+      var lowTemp3 = ((response.list[24].main.temp_max - 273.15) * 1.8 + 32).toFixed(2);
       console.log(lowTemp3);
-      var highTemp3 = ((response.list[24].main.temp_max - 273.15) * 1.8 + 32).toFixed(2);
+      var highTemp3 = ((response.list[20].main.temp_min - 273.15) * 1.8 + 32).toFixed(2);
       console.log(highTemp3);
       //humidity
       var humidity3 = response.list[20].main.humidity;
