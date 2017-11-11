@@ -2,6 +2,7 @@
 var lat, long, map, userRef, userId;
 
 $(document).ready(function(){
+  $("#addFav").hide();
   var background = $("body");
   //need to set image full screen size
   //need to figure out how to keep content stable
@@ -55,7 +56,7 @@ function getParkData(clickedPark){
   if(clickedPark == undefined){
       var park = $("#nationalPark").val().trim().toLowerCase();
     }else{
-      var park = clickedPark;
+      var park = clickedPark.toLowerCase();
     }
   console.log("this is :" + park);
   var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + park + "&key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc"
@@ -608,6 +609,8 @@ btnSignOut.addEventListener('click', function(e) {
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("user signed out");
+    $("#showFav").empty();
+    $("#addFav").hide();
   }).catch(function(error) {
     // An error happened.
   });
@@ -627,9 +630,12 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     console.log(firebaseUser);
     $("#welcome").html("Hello, " + firebaseUser.email + "!"); //let user know they are signed in***
     $("#favBar").html("Add to your favorite parks:");
+    $("#addFav").show();
+
   }
    else {
       console.log('not logged in');
+      $("#showFav").empty();
   }
 });
 
