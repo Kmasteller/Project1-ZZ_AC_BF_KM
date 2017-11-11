@@ -42,21 +42,6 @@ $(document).ready(function(){
   
 });
 
-//login,signup link to the other page
-$("#login").on("click", function(){
-  //prevent button default
-  event.preventDefault();
-  // window.location.href='loginAC.html';
-  window.open("loginAC.html","_blank");
-});
-
-$("#signup").on("click", function(){
-  //prevent button default
-  event.preventDefault();
-  // window.location.href='loginAC.html';
-  window.open("loginAC.html","_blank");
-});
-
 // MAPS start here
 $("#submit").on("click", function (event) {
   event.preventDefault();  
@@ -499,9 +484,26 @@ btnLogOkay.onclick = function() {
   // console.log("is this working")
 }
 
+//I CAN'T GET WINDOW CLICK TO WORK***
+window.onclick = function(event) {
+  if (event.target == logIn) {
+      logIn.style.display = "none";
+  }
+}
+
+//I ADDED THIS FOR FAILING SIGN UP ALERT (MODAL)***
+var signUpFail = document.getElementById('failedSignUpModal');
+// var btnFailLogIn = document.getElementById('btnLogin');
+var btnFailOkay = document.getElementById("btnFailOkay");
+
+btnFailOkay.onclick = function() {
+  signUpFail.style.display = "none";
+  // console.log("is this working")
+}
+
 window.onclick = function(event) {
   if (event.target == modal) {
-      logIn.style.display = "none";
+      signUpFail.style.display = "none";
   }
 }
 
@@ -519,8 +521,9 @@ btnOkay.onclick = function() {
   console.log("is this working")
 }
 
+//I CAN'T GET WINDOW CLICK TO WORK***
 window.onclick = function(event) {
-  if (event.target == modal) {
+  if (event.target == signOut) {
       signOut.style.display = "none";
   }
 }
@@ -584,7 +587,7 @@ btnSignUp.addEventListener('click', function(e) {
   const promise = auth.createUserWithEmailAndPassword(email,pass);
   promise.catch(function (e) {
     console.log(e.message); 
-    alert("password needs to be 6 characters long and email with domain needs to be used")
+    signUpFail.style.display = "block";
   });
 });
 
