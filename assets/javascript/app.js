@@ -1,4 +1,3 @@
-// console.log("yo ho ho");
 // Global Variables
 var lat, long, map, userRef, userId;
 
@@ -42,12 +41,24 @@ $(document).ready(function(){
   
 });
 
+//when user clicked on submit button
+$("#submit").on("click", function(){
+  getParkData()
+});
+
+//cool maps
+//***********************************************************************************************************************************************
+
 // MAPS start here
-$("#submit").on("click", function (event) {
+function getParkData(clickedPark){
   event.preventDefault();  
-  var parkEntered = $("#nationalPark").val().trim();
-  console.log(parkEntered);
-  var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + parkEntered + "&key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc"
+  if(clickedPark == undefined){
+      var park = $("#nationalPark").val().trim();
+    }else{
+      var park = clickedPark;
+    }
+  console.log("this is :" + park);
+  var queryUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + park + "&key=AIzaSyBdOY7A0Xu1EtE4TJm-kPUzEf71Tte7KIc"
  
   $.ajax({
     url: queryUrl,
@@ -160,8 +171,8 @@ $("#submit").on("click", function (event) {
       highTemp2 +"℉"+ "</td><td id='humidity2'>" + humidity2 + "</td><td id='weather2'>" + weather2 + "</td></tr>"+"<tr><td id='dayCount3'>" + date3 + "</td><td id='lowTemp3'>" + lowTemp3 +"℉"+ "</td><td id='highTemp3'>" +
       highTemp3 +"℉"+ "</td><td id='humidity3'>" + humidity3 + "</td><td id='weather3'>" + weather3 + "</td></tr>");
     });    
-    // console.log(park);
-  var park = $("#nationalPark").val().toLowerCase();
+    console.log(park);
+  // var park = $("#nationalPark").val().toLowerCase();
   
   if(park == "yellowstone"){
     $("#nationalParkName").text("Yellowstone");
@@ -442,7 +453,7 @@ $("#submit").on("click", function (event) {
 
   reset();
 });
-});
+};
   
   function reset(){
     $("#nationalPark").val("");
@@ -451,6 +462,7 @@ $("#submit").on("click", function (event) {
     $("#infoHere").empty();
   }
 
+//***********************************************************************************************************************************************
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -514,6 +526,7 @@ var btnOkay = document.getElementById("btnSignOkay");
 
 btnSignOut.onclick = function() {
   signOut.style.display = "block";
+  $("#showFav").empty();
 }
 
 btnOkay.onclick = function() {
@@ -599,6 +612,8 @@ btnSignOut.addEventListener('click', function(e) {
     // An error happened.
   });
   $("#welcome").html("Not logged in"); //empty welcome span when sign out***
+  $("#favBar").html("You must log in to store your favorite parks.");
+
 });//btnsignout
 
   // add a realtime listener
@@ -611,6 +626,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     waiter();
     console.log(firebaseUser);
     $("#welcome").html("Hello, " + firebaseUser.email + "!"); //let user know they are signed in***
+    $("#favBar").html("Add to your favorite parks:");
   }
    else {
       console.log('not logged in');
@@ -623,13 +639,62 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 //we were having control flow issues with the user ref being undefined thats why we made this function
 function waiter () {
   userRef.child("favParks").on("value", function(snap){
-    console.log("child was added");
-    //this is looping over all our favParks and we do stuff yet to be decided
-    snap.forEach(function(childSnapshot) {
-        console.log(childSnapshot.val());
-    });
-});
-}
+    console.log("child was added", snap.val())
+      snap.forEach(function(childSnapshot) {
+          console.log(childSnapshot.val())
+          var newButton = $("<button id='newButton'>");
+          if(childSnapshot.val()!=""){
+            // for (i=0;i<)
+            newButton.text(childSnapshot.val());
+            // console.log(favParks);
+            // console.log(userRef.child("favParks"));
+            
+            $("#showFav").append(newButton);
+          }
+          
+    })
+  })
+  
+};
 
+
+// var favParksArray = [];
+$("#addFav").on("click", function(event){
+  //prevent button default
+  event.preventDefault();
+  //pass the user input to firebase
+  var favPark = $("#nationalPark").val().trim();
+ 
+  if(favPark!=""){
+  //   favParksArray.push(favPark);
+  //   console.log(favParksArray);
     
+    userRef.child("favParks").push(favPark);
+    $("#nationalPark").val("");
+  }
+  // for(var i=0;i<favParksArray.length;i++){
+    // if(favParksArray.length<=3){
+    //   userRef.child("favParks").push(favPark);
+    // }
+    // else{
+    //   favParksArray.splice(0,1);
+    //   console.log(favParksArray);
+    //   userRef.child("favParks").set(favParksArray);
+      
+    // }
+  // }
+  $("#showFav").empty();
+  
+  waiter();
+  // console.log(userRef.child("favParks"));
+})
+
+
+//when user log in to the website, show saved favorites (type: button)
+$("#showFav").on("click", "#newButton", function(){
+  console.log("hey im in showfave")
+  console.log($(this).text())
+  var park = $(this).text()
+  getParkData(park)
+})
 
